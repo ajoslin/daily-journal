@@ -2,7 +2,7 @@ var App = angular.module('dailyJournal', ['firebase', 'ngAnimate', 'pasvaz.bindo
 
 .constant('Firebase', Firebase)
 .constant('moment', moment)
-.constant('appFirebase', new Firebase('http://daily-journal.firebaseio.com/entries'))
+.constant('appFirebase', new Firebase('http://daily-journal.firebaseio.com'))
 
 .controller('AppCtrl', ['$scope', 'moment', '$user', 'appFirebase', 'jsonDateFilter', function($scope, moment, $user, appFirebase, jsonDateFilter) {
   $scope.prettyDate = function(d) {
@@ -16,7 +16,7 @@ var App = angular.module('dailyJournal', ['firebase', 'ngAnimate', 'pasvaz.bindo
     if (!val) {
       return;
     }
-    userEntriesRef = appFirebase.child($user.uid());
+    userEntriesRef = appFirebase.child('entries').child($user.uid());
 
     userEntriesRef.on('value', useValue);
   });

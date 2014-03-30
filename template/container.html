@@ -18,9 +18,10 @@
       Sign in With Google
     </a>
     <a class="button button-icon fadeInDown"
-      ng-show="$user.authenticated()">
+      ng-show="$user.authenticated()"
+      ng-click="$user.logout()">
       <i class="icon ion-person"></i>
-      Hello, {{$user.get().given_name || user.get().displayName || user.get().name}}!
+      {{$user.get().displayName}} [Logout]
     </a>
   </div>
 </div>

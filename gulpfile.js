@@ -43,8 +43,8 @@ gulp.task('assets', ['index'], function() {
 });
 var vendorFiles = [
   'bower_components/moment/moment.js',
-  'bower_components/firebase/firebase.js',
-  'bower_components/firebase-simple-login/firebase-simple-login.js',
+  // 'bower_components/firebase/firebase-debug.js',
+  // 'bower_components/firebase-simple-login/firebase-simple-login.js',
   'bower_components/angular/angular.js',
   'bower_components/angular-animate/angular-animate.js',
   'bower_components/angularfire/angularfire.js',
