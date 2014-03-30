@@ -1,0 +1,18 @@
+<div ng-if="oldEntries.length">
+  <div class="card old-entry" bindonce
+    ng-repeat="entry in oldEntries">
+    <div class="item item-divider"
+      bo-text="prettyDate(entry.date)">
+    </div>
+    <div class="item item-text-wrap"
+      bo-html="entry.text">
+    </div>
+  </div>
+</div>
+<div class="card today" ng-controller="TodayEntryCtrl">
+  <div class="item item-divider positive">
+    {{prettyDate(todayJson)}}
+  </div>
+  <div class="item item-text-wrap" contenteditable strip-br ng-model="entryText" autofocus>
+  </div>
+</div>

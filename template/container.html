@@ -1,0 +1,31 @@
+<div class="bar bar-header bar-stable">
+  <!--
+  <div class="buttons">
+    <a class="button button-icon">
+      <i class="icon ion-calendar"></i>
+      Select a Day
+    </a>
+  </div>
+  -->
+  <h1 class="title">
+    Daily Journal
+  </h1>
+  <div class="buttons" ng-hide="$user.loading()">
+    <a class="button button-icon fadeInDown" 
+      ng-show="!$user.authenticated()"
+      ng-click="$user.loginGoogle()">
+      <i class="icon ion-social-googleplus-outline"></i>
+      Sign in With Google
+    </a>
+    <a class="button button-icon fadeInDown"
+      ng-show="$user.authenticated()">
+      <i class="icon ion-person"></i>
+      Hello, {{$user.get().given_name || user.get().displayName || user.get().name}}!
+    </a>
+  </div>
+</div>
+<div class="scroll-content overflow-scroll has-header">
+  <div class="scroll"
+    ng-include="'template/content.html'">
+  </div>
+</div>

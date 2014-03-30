@@ -1,0 +1,11 @@
+@import "../bower_components/ionic/scss/ionic.scss";
+
+@import "animations.scss";
+
+.card .item-text-wrap {
+  min-height: 150px;
+}
+
+.card.old-entry .item {
+  color: #666;
+}
