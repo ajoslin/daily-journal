@@ -1,0 +1,86 @@
+<!doctype html>
+<html ng-app="dailyJournal" ng-controller="AppCtrl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Daily Journal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <!-- inject:vendor:js -->
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/firebase/firebase.js"></script>
+  <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angularfire/angularfire.js"></script>
+  <script src="bower_components/angular-bindonce/bindonce.js"></script>
+  <!-- endinject -->
+</head>
+<body>
+  <div ng-include="'template/container.html'"></div>
+
+  <!-- inject:js -->
+  <script src="js/app.js"></script>
+  <script src="js/controllers/TodayEntryCtrl.js"></script>
+  <script src="js/directives/contenteditable.js"></script>
+  <script src="js/filters/jsonDate.js"></script>
+  <script src="js/services/user.js"></script>
+  <!-- endinject -->
+  <!-- inject:html -->
+  <script type="text/ng-template" id="template/container.html"><div class="bar bar-header bar-stable">
+  <!--
+  <div class="buttons">
+    <a class="button button-icon">
+      <i class="icon ion-calendar"></i>
+      Select a Day
+    </a>
+  </div>
+  -->
+  <h1 class="title">
+    Daily Journal
+  </h1>
+  <div class="buttons" ng-hide="$user.loading()">
+    <a class="button button-icon fadeInDown" 
+      ng-show="!$user.authenticated()"
+      ng-click="$user.loginGoogle()">
+      <i class="icon ion-social-googleplus-outline"></i>
+      Sign in With Google
+    </a>
+    <a class="button button-icon fadeInDown"
+      ng-show="$user.authenticated()">
+      <i class="icon ion-person"></i>
+      Hello, {{$user.get().given_name || user.get().displayName || user.get().name}}!
+    </a>
+  </div>
+</div>
+<div class="scroll-content overflow-scroll has-header">
+  <div class="scroll"
+    ng-include="'template/content.html'">
+  </div>
+</div>
+</script>
+  <script type="text/ng-template" id="template/content.html"><div ng-if="oldEntries.length">
+  <div class="card old-entry" bindonce
+    ng-repeat="entry in oldEntries">
+    <div class="item item-divider"
+      bo-text="prettyDate(entry.date)">
+    </div>
+    <div class="item item-text-wrap"
+      bo-html="entry.text">
+    </div>
+  </div>
+</div>
+<div class="card today" ng-controller="TodayEntryCtrl">
+  <div class="item item-divider positive">
+    {{prettyDate(todayJson)}}
+  </div>
+  <div class="item item-text-wrap" contenteditable strip-br ng-model="entryText" autofocus>
+  </div>
+</div>
+</script>
+  <script type="text/ng-template" id="template/edit-card.html"></script>
+  <script type="text/ng-template" id="template/read-card.html"></script>
+  <!-- endinject -->
+</body>
+</html>
