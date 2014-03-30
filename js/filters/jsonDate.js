@@ -1,8 +1,1 @@
-App.filter('jsonDate', [
-  'moment',
-  function (moment) {
-    return function (d) {
-      return moment(d).format('YYYY-MM-DD');
-    };
-  }
-]);
+App.filter("jsonDate",["moment",function(n){return function(t){return n(t).format("YYYY-MM-DD")}}]);
