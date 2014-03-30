@@ -28,7 +28,7 @@ App.controller('TodayEntryCtrl', [
       initRemote();
     }
     function initRemote() {
-      var ref = $firebase(appFirebase.child($user.uid()).child(jsonDateFilter()));
+      var ref = $firebase(appFirebase.child('entries').child($user.uid()).child(jsonDateFilter()));
       ref.$bind($scope, 'entryText').then(function () {
         if (mostRecentValue != initialValue) {
           $scope.entryText = mostRecentValue;

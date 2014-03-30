@@ -7,10 +7,11 @@
   <title>Daily Journal</title>
   
   <link rel="stylesheet" href="css/style.css">
+  <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+  <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.3.0/firebase-simple-login-debug.js'>
+</script>
   <!-- inject:vendor:js -->
   <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/firebase/firebase.js"></script>
-  <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angularfire/angularfire.js"></script>
@@ -48,9 +49,10 @@
       Sign in With Google
     </a>
     <a class="button button-icon fadeInDown"
-      ng-show="$user.authenticated()">
+      ng-show="$user.authenticated()"
+      ng-click="$user.logout()">
       <i class="icon ion-person"></i>
-      Hello, {{$user.get().given_name || user.get().displayName || user.get().name}}!
+      {{$user.get().displayName}} [Logout]
     </a>
   </div>
 </div>

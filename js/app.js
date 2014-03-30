@@ -2,7 +2,7 @@ var App = angular.module('dailyJournal', [
     'firebase',
     'ngAnimate',
     'pasvaz.bindonce'
-  ]).constant('Firebase', Firebase).constant('moment', moment).constant('appFirebase', new Firebase('http://daily-journal.firebaseio.com/entries')).controller('AppCtrl', [
+  ]).constant('Firebase', Firebase).constant('moment', moment).constant('appFirebase', new Firebase('http://daily-journal.firebaseio.com')).controller('AppCtrl', [
     '$scope',
     'moment',
     '$user',
@@ -18,7 +18,7 @@ var App = angular.module('dailyJournal', [
         if (!val) {
           return;
         }
-        userEntriesRef = appFirebase.child($user.uid());
+        userEntriesRef = appFirebase.child('entries').child($user.uid());
         userEntriesRef.on('value', useValue);
       });
       function useValue(snapshot) {
